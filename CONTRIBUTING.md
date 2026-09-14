@@ -95,6 +95,42 @@ A healthy pattern for multi-step skills: evidence (`debugger`) → action
 
 ---
 
+## Copy-paste starting template
+
+Duplicate this, replace every `YOUR_*` placeholder, delete what you don't
+need — every field is optional except the marked ones. It validates as-is
+(4 steps, roles from the evidence → action → report pattern).
+
+```json
+{
+  "name": "YOUR-skill-id",
+  "description": "YOUR one sentence: what the skill does and what it produces.",
+  "version": "1.0.0",
+  "author": "YOUR-github-name",
+  "trigger": ["YOUR phrase users might type", "another phrase"],
+  "inputs": [
+    { "name": "YOUR-input", "required": false }
+  ],
+  "steps": [
+    { "title": "Gather evidence: YOUR first investigation step", "role": "debugger" },
+    { "title": "Check how this project already handles YOUR-topic, to match its conventions", "role": "research" },
+    { "title": "Do the work: YOUR main action step", "role": "coder" },
+    { "title": "Verify the result and write the report: YOUR final summary", "role": "reviewer" }
+  ],
+  "allowed_tools": ["fs_read_file", "fs_search", "fs_write_file", "term_run"],
+  "validation": "how the agent can check its own work succeeded",
+  "expected_output": "the shape of the final deliverable (report, file, table…)",
+  "failure_recovery": "what to do when a step fails; never invent results",
+  "test_cases": []
+}
+```
+
+Quick self-check before the PR: `python -m json.tool your-skill.json` parses,
+every `YOUR_*` is gone, each step title starts with a verb, and the skill runs
+for real against a scratch project (paste its raw URL into JARVIS to try it).
+
+---
+
 ## The catalog entry
 
 Add one object to the `items` array in `catalog.json`, in alphabetical order by
