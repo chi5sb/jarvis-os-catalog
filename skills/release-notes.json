@@ -1,0 +1,22 @@
+{
+  "name": "release-notes",
+  "description": "Write user-facing release notes for the current state of the project: gather the real changes from git, group them into Added/Changed/Fixed/Removed, and save them as a reviewable file.",
+  "version": "1.0.0",
+  "author": "jarvis-os",
+  "trigger": ["release notes", "write the changelog", "changelog for this release"],
+  "inputs": [
+    { "name": "version", "required": false }
+  ],
+  "steps": [
+    { "title": "Inspect the recent history: run git_diff and read the recent commit subjects to build the real list of changes since the last release tag (git tag --sort=-creatordate lists it, if tags exist)", "role": "debugger" },
+    { "title": "Read any existing CHANGELOG.md or RELEASES.md to match the project's established format and avoid duplicating already-released entries", "role": "research" },
+    { "title": "Group the changes into Added / Changed / Fixed / Removed, written user-facing (what a user notices, not commit jargon); drop pure-revert pairs and internal-only churn", "role": "coder" },
+    { "title": "Write the notes to RELEASE_NOTES.md in the project root with a suggested version heading, a one-line summary at the top, and each group as a section; if the user supplied a version, use it", "role": "coder" },
+    { "title": "Verify every claim: re-read RELEASE_NOTES.md and confirm each bullet traces to a real commit or diff you saw; correct or delete anything you cannot trace", "role": "reviewer" }
+  ],
+  "allowed_tools": ["term_run", "git_diff", "fs_read_file", "fs_search", "fs_write_file"],
+  "validation": "RELEASE_NOTES.md exists in the project root, starts with a version heading and a one-line summary, and every bullet traces to a real commit observed in step 1",
+  "expected_output": "RELEASE_NOTES.md with version heading, summary line, and Added/Changed/Fixed/Removed sections of user-facing bullets",
+  "failure_recovery": "if there is no git history or no changes since the last tag, say so and write notes covering the current diff instead; never invent changes",
+  "test_cases": []
+}
