@@ -1,0 +1,19 @@
+{
+  "name": "deps-update",
+  "description": "Update project dependencies to safe minor/patch versions, run the tests, and report what changed.",
+  "version": "1.0.0",
+  "author": "jarvis-os",
+  "trigger": ["update dependencies", "deps update"],
+  "inputs": [],
+  "steps": [
+    { "title": "Detect the package manager and list outdated dependencies", "role": "tester" },
+    { "title": "Apply minor and patch updates only (no major version jumps)", "role": "coder" },
+    { "title": "Run the build and the test suite", "role": "tester" },
+    { "title": "Report exactly which packages changed version and the test results", "role": "tester" }
+  ],
+  "allowed_tools": ["fs_read_file", "fs_edit_file", "term_run", "fs_list_dir"],
+  "validation": "the test suite ran and its pass/fail counts are reported",
+  "expected_output": "changed package list + test pass/fail counts",
+  "failure_recovery": "if tests fail after the update, revert the change that broke them and report which one",
+  "test_cases": []
+}

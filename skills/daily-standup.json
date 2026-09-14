@@ -1,0 +1,18 @@
+{
+  "name": "daily-standup",
+  "description": "Summarize yesterday's git commits and today's plan into a standup note for the active project.",
+  "version": "1.0.0",
+  "author": "jarvis-os",
+  "trigger": ["standup", "daily report"],
+  "inputs": [],
+  "steps": [
+    { "title": "Inspect the git log for the last 24 hours and list changed files", "role": "research" },
+    { "title": "Group the changes into themes and note anything unfinished", "role": "research" },
+    { "title": "Write the standup note: done / doing / blockers", "role": "research" }
+  ],
+  "allowed_tools": ["git_diff", "fs_read_file", "fs_list_dir"],
+  "validation": "the note lists real commits from the git log, nothing invented",
+  "expected_output": "done / doing / blockers sections",
+  "failure_recovery": "if git history is unavailable, say so and summarize the current diff instead",
+  "test_cases": []
+}

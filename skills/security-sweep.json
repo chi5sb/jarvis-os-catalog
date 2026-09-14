@@ -1,0 +1,19 @@
+{
+  "name": "security-sweep",
+  "description": "Scan the project for common vulnerabilities (secrets, injection, unsafe deps) and report findings with file:line references.",
+  "version": "1.0.0",
+  "author": "jarvis-os",
+  "trigger": ["security sweep", "security check"],
+  "inputs": [],
+  "steps": [
+    { "title": "Search the codebase for hardcoded secrets, API keys and tokens", "role": "debugger" },
+    { "title": "Look for injection risks: unsanitized input reaching queries, commands or HTML", "role": "debugger" },
+    { "title": "Check dependency manifests for known-risky patterns and note versions", "role": "tester" },
+    { "title": "Write the findings report: severity, file:line, and a one-line fix for each", "role": "reviewer" }
+  ],
+  "allowed_tools": ["fs_search", "fs_read_file", "code_search_symbols", "fs_list_dir", "term_run"],
+  "validation": "every finding has a real file:line reference verified by reading the file",
+  "expected_output": "findings table with severity + location + suggested fix",
+  "failure_recovery": "report which checks could not run and why; never invent findings",
+  "test_cases": []
+}

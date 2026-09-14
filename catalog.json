@@ -1,0 +1,28 @@
+{
+  "items": [
+    {
+      "kind": "skill",
+      "id": "daily-standup",
+      "name": "Daily Standup Report",
+      "description": "Summarize yesterday's git commits and today's plan into a standup note for the active project.",
+      "author": "jarvis-os",
+      "url": "https://raw.githubusercontent.com/chi5sb/jarvis-os-catalog/main/skills/daily-standup.json"
+    },
+    {
+      "kind": "skill",
+      "id": "security-sweep",
+      "name": "Security Sweep",
+      "description": "Scan the project for common vulnerabilities (secrets, injection, unsafe deps) and report findings with file:line references.",
+      "author": "jarvis-os",
+      "url": "https://raw.githubusercontent.com/chi5sb/jarvis-os-catalog/main/skills/security-sweep.json"
+    },
+    {
+      "kind": "skill",
+      "id": "deps-update",
+      "name": "Dependency Update",
+      "description": "Update project dependencies to safe minor/patch versions, run the tests, and report what changed.",
+      "author": "jarvis-os",
+      "url": "https://raw.githubusercontent.com/chi5sb/jarvis-os-catalog/main/skills/deps-update.json"
+    }
+  ]
+}
